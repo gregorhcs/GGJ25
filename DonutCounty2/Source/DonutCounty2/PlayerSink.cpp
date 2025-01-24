@@ -25,11 +25,6 @@ void APlayerSink::HandleOnMoveTriggered(const FInputActionValue& Value)
 {
 	const FVector2d Direction = Value.Get<FVector2d>();
 	const FVector Direction3d = FVector3d(Direction.X, Direction.Y, 0.f);
-
-	UE_LOG(LogTemp, Log, TEXT("%s"), *Direction.ToString())
-	
-	const FVector DrawStart = GetActorLocation() + 100 * GetActorForwardVector();
-	DrawDebugLine(GetWorld(), DrawStart, DrawStart + Direction3d * 300, FColor::Blue);
 	
 	const float DeltaSeconds = GetWorld()->GetDeltaSeconds();
 	FHitResult MoveHit;
