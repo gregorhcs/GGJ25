@@ -1,0 +1,7 @@
+﻿**/Binaries
+**/Intermediate
+**/.idea
+**/.vs
+**/Saved
+*.sln
+DonutCounty2/.vsconfig
