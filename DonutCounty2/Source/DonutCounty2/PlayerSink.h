@@ -24,7 +24,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<UInputAction> IA_Move = nullptr;
 
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	float Speed = 400.f;
 
 	void HandleOnMoveTriggered(const FInputActionValue& Value);

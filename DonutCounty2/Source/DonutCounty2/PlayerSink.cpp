@@ -23,10 +23,14 @@ void APlayerSink::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 void APlayerSink::HandleOnMoveTriggered(const FInputActionValue& Value)
 {
-	const FVector2d Direction = Value.Get<FVector2d>();
-	const FVector Direction3d = FVector3d(Direction.X, Direction.Y, 0.f);
+	const FVector2d RelativeDirection = Value.Get<FVector2d>();
+	const FVector RelativeDirection3d = FVector3d(RelativeDirection.X, RelativeDirection.Y, 0.f);
+
+	FVector ForwardXY = GetActorForwardVector();
+	ForwardXY.Z = 0.f;
+	const FVector Direction = ForwardXY.RotateAngleAxis(FRotator::NormalizeAxis(RelativeDirection3d.Rotation().Yaw + 90.f), FVector::UpVector);
 	
 	const float DeltaSeconds = GetWorld()->GetDeltaSeconds();
 	FHitResult MoveHit;
-	AddActorWorldOffset(Speed * DeltaSeconds * Direction3d, false, &MoveHit);
+	AddActorWorldOffset(Speed * DeltaSeconds * Direction, false, &MoveHit);
 }
