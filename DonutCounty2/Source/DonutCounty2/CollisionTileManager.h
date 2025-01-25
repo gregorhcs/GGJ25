@@ -7,6 +7,8 @@
 #include "CollisionTile.h"
 #include "CollisionTileManager.generated.h"
 
+DECLARE_DYNAMIC_DELEGATE_TwoParams(FTileCallback, FVector, Location, float, Scale);
+
 UCLASS(Blueprintable)
 class DONUTCOUNTY2_API ACollisionTileManager : public AActor
 {
@@ -18,6 +20,9 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable)
+	void ForEachTilePosition(FTileCallback Callback);
+	
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ACollisionTile> CollisionTileClass;
 
@@ -36,7 +41,4 @@ protected:
 	TArray<TWeakObjectPtr<ACollisionTile>> CollisionTiles = {};
 
 	int32 TileNumPerLine = -1;
-	
-public:
-	virtual void Tick(float DeltaTime) override;
 };
