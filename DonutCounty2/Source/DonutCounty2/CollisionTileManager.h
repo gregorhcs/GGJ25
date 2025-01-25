@@ -29,8 +29,13 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	float Resolution = 5.f;
 
+	UPROPERTY(EditDefaultsOnly)
+	int SinkRadiusInTiles = 20;
+
 	UPROPERTY()
 	TArray<TWeakObjectPtr<ACollisionTile>> CollisionTiles = {};
+
+	int32 TileNumPerLine = -1;
 	
 public:
 	virtual void Tick(float DeltaTime) override;

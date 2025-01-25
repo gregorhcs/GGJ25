@@ -3,6 +3,8 @@
 
 #include "CollisionTile.h"
 
+#include "PlayerSink.h"
+
 
 ACollisionTile::ACollisionTile()
 {
@@ -22,4 +24,24 @@ void ACollisionTile::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ACollisionTile::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	Super::NotifyActorBeginOverlap(OtherActor);
+
+	if (Cast<APlayerSink>(OtherActor))
+		return;
+
+	Plane->SetCollisionProfileName(TEXT("BlockNoneOverlapPawn"));
+}
+
+void ACollisionTile::NotifyActorEndOverlap(AActor* OtherActor)
+{
+	Super::NotifyActorEndOverlap(OtherActor);
+
+	if (Cast<APlayerSink>(OtherActor))
+		return;
+
+	Plane->SetCollisionProfileName(TEXT("BlockAllOverlapPawn"));
 }

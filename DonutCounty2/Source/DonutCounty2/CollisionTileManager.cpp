@@ -19,7 +19,7 @@ void ACollisionTileManager::BeginPlay()
 	const float OriginX = GetActorLocation().X;
 	const float OriginY = GetActorLocation().Y;
 
-	const int32 TileNumPerLine = FMath::FloorToInt(Extent / Resolution);
+	TileNumPerLine = FMath::FloorToInt(Extent / Resolution);
 
 	const float HalfExtent = Extent/2;
 	
@@ -58,5 +58,13 @@ void ACollisionTileManager::BeginPlay()
 void ACollisionTileManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	// for (int X = 0; X < TileNumPerLine; X++)
+	// {
+	// 	for (int Y = 0; Y < TileNumPerLine; Y++)
+	// 	{
+	// 		CollisionTiles[X + Y * TileNumPerLine]->
+	// 	}
+	// }
 }
 
