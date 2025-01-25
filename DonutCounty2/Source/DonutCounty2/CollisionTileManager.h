@@ -17,9 +17,10 @@ class DONUTCOUNTY2_API ACollisionTileManager : public AActor
 public:
 	ACollisionTileManager();
 
+	UFUNCTION(BlueprintCallable)
+	void ModifySinkRadiusInTiles(float Multiplier);
+	
 protected:
-	virtual void BeginPlay() override;
-
 	UFUNCTION(BlueprintCallable)
 	void ForEachTilePosition(FTileCallback Callback);
 	
@@ -27,11 +28,11 @@ protected:
 	TSubclassOf<ACollisionTile> CollisionTileClass;
 
 	// extent in cm
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float Extent = 200.f;
 
 	// size of each tile in cm
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float Resolution = 5.f;
 
 	UPROPERTY(EditDefaultsOnly)
