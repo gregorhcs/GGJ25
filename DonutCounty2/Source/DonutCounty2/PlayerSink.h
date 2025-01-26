@@ -16,6 +16,9 @@ public:
 	// - APawn
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// --
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	float Speed = 400.f;
 	
 protected:
 	UPROPERTY(EditDefaultsOnly)
@@ -23,9 +26,6 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<UInputAction> IA_Move = nullptr;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	float Speed = 400.f;
 
 	void HandleOnMoveTriggered(const FInputActionValue& Value);
 };
